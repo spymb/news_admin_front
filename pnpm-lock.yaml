@@ -5,6 +5,9 @@ settings:
   excludeLinksFromLockfile: false
 
 dependencies:
+  '@element-plus/icons-vue':
+    specifier: ^2.3.1
+    version: registry.npmmirror.com/@element-plus/icons-vue@2.3.1(vue@3.3.11)
   '@tsparticles/slim':
     specifier: ^3.1.0
     version: registry.npmmirror.com/@tsparticles/slim@3.1.0
@@ -20,6 +23,9 @@ dependencies:
   pinia:
     specifier: ^2.1.7
     version: registry.npmmirror.com/pinia@2.1.7(typescript@5.2.2)(vue@3.3.11)
+  pinia-plugin-persistedstate:
+    specifier: ^3.2.1
+    version: registry.npmmirror.com/pinia-plugin-persistedstate@3.2.1(pinia@2.1.7)
   vue:
     specifier: ^3.3.11
     version: 3.3.11(typescript@5.2.2)
@@ -1660,6 +1666,17 @@ packages:
     resolution: {integrity: sha512-1fygroTLlHu66zi26VoTDv8yRgm0Fccecssto+MhsZ0D/DGW2sm8E8AjW7NU5VVTRt5GxbeZ5qBuJr+HyLYkjQ==, registry: http://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/picocolors/-/picocolors-1.0.0.tgz}
     name: picocolors
     version: 1.0.0
+    dev: false
+
+  registry.npmmirror.com/pinia-plugin-persistedstate@3.2.1(pinia@2.1.7):
+    resolution: {integrity: sha512-MK++8LRUsGF7r45PjBFES82ISnPzyO6IZx3CH5vyPseFLZCk1g2kgx6l/nW8pEBKxxd4do0P6bJw+mUSZIEZUQ==, registry: http://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/pinia-plugin-persistedstate/-/pinia-plugin-persistedstate-3.2.1.tgz}
+    id: registry.npmmirror.com/pinia-plugin-persistedstate/3.2.1
+    name: pinia-plugin-persistedstate
+    version: 3.2.1
+    peerDependencies:
+      pinia: ^2.0.0
+    dependencies:
+      pinia: registry.npmmirror.com/pinia@2.1.7(typescript@5.2.2)(vue@3.3.11)
     dev: false
 
   registry.npmmirror.com/pinia@2.1.7(typescript@5.2.2)(vue@3.3.11):
