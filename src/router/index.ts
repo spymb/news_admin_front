@@ -42,7 +42,7 @@ router.beforeEach((to, from, next) => {
   }
 });
 
-const configRouter = (callback) => {
+const configRouter = (callback: Function) => {
   routeList.forEach((route) => {
     router.addRoute("main", route);
   });
