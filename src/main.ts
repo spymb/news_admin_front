@@ -8,6 +8,7 @@ import "element-plus/dist/index.css";
 import Particles from "@tsparticles/vue3";
 import { loadSlim } from "@tsparticles/slim";
 import piniaPluginPersistedstate from "pinia-plugin-persistedstate";
+import "@/util/axios.config";
 
 const app = createApp(App);
 

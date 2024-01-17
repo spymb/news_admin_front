@@ -33,6 +33,8 @@
 <script setup lang="ts">
 import { reactive, ref } from "vue";
 import { useRouter } from "vue-router";
+import axios from "axios";
+import { ElMessage } from "element-plus";
 
 const loginForm = reactive({
   username: "",
@@ -60,18 +62,17 @@ const loginRules = reactive({
 const router = useRouter();
 
 const submitForm = () => {
-  //1. 校验表单
   loginFormRef.value.validate((valid: boolean) => {
     if (valid) {
-      localStorage.setItem("token", "xxx");
-      router.push("/home");
+      axios.post("/adminapi/user/login", loginForm).then((res) => {
+        if (res.data.ActionType === "OK") {
+          router.push("/home");
+        } else {
+          ElMessage.error("用户名或密码错误");
+        }
+      });
     }
   });
-
-  //2. 拿到表单内容,提交后台
-
-  //3. 设置token
-  // localStorage.setItem("token", "xxx");
 };
 
 const options = {
