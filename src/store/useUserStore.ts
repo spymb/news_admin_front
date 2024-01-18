@@ -6,6 +6,7 @@ type UserInfo = {
   password: string;
   role: 1 | 2; // 管理员1 ,编辑2
   avatar: string;
+  file: Blob;
   gender: 0 | 1 | 2; // 0保密, 1男, 2女
   introduction: string;
 };

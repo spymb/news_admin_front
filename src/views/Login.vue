@@ -69,7 +69,7 @@ const submitForm = () => {
     if (valid) {
       axios.post("/adminapi/user/login", loginForm).then((res) => {
         if (res.data.ActionType === "OK") {
-          changeUserInfo(res.data.data)
+          changeUserInfo(res.data.data);
           router.push("/home");
         } else {
           ElMessage.error("用户名或密码错误");
@@ -173,7 +173,7 @@ const options = {
   }
 }
 
-::v-deep .el-form-item__label {
+:deep(.el-form-item__label) {
   color: white;
 }
 </style>
