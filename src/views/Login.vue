@@ -35,6 +35,7 @@ import { reactive, ref } from "vue";
 import { useRouter } from "vue-router";
 import axios from "axios";
 import { ElMessage } from "element-plus";
+import useUserStore from "@/store/useUserStore";
 
 const loginForm = reactive({
   username: "",
@@ -61,11 +62,14 @@ const loginRules = reactive({
 
 const router = useRouter();
 
+const { changeUserInfo } = useUserStore();
+
 const submitForm = () => {
   loginFormRef.value.validate((valid: boolean) => {
     if (valid) {
       axios.post("/adminapi/user/login", loginForm).then((res) => {
         if (res.data.ActionType === "OK") {
+          changeUserInfo(res.data.data)
           router.push("/home");
         } else {
           ElMessage.error("用户名或密码错误");

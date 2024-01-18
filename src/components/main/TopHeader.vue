@@ -29,6 +29,7 @@
 import { useRouter } from "vue-router";
 import { Menu, User } from "@element-plus/icons-vue";
 import useCollapseStore from "@/store/useCollapseStore";
+import useUserStore from "@/store/useUserStore";
 import { storeToRefs } from "pinia";
 
 const collapseStore = useCollapseStore();
@@ -42,8 +43,10 @@ const router = useRouter();
 const handleCenter = () => {
   router.push("/center");
 };
+const { clearUserInfo } = useUserStore();
 const handleLogout = () => {
   localStorage.removeItem("token");
+  clearUserInfo()
   router.push("/login");
 };
 </script>
