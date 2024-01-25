@@ -20,6 +20,7 @@
             v-model="loginForm.password"
             type="password"
             autocomplete="off"
+            show-password
           />
         </el-form-item>
         <el-form-item>
@@ -36,6 +37,7 @@ import { useRouter } from "vue-router";
 import axios from "axios";
 import { ElMessage } from "element-plus";
 import useUserStore from "@/store/useUserStore";
+import useAuthStore from "@/store/useAuthStore";
 
 const loginForm = reactive({
   username: "",
@@ -63,6 +65,7 @@ const loginRules = reactive({
 const router = useRouter();
 
 const { changeUserInfo } = useUserStore();
+const { switchRouterConfig } = useAuthStore();
 
 const submitForm = () => {
   loginFormRef.value.validate((valid: boolean) => {
@@ -70,6 +73,7 @@ const submitForm = () => {
       axios.post("/adminapi/user/login", loginForm).then((res) => {
         if (res.data.ActionType === "OK") {
           changeUserInfo(res.data.data);
+          switchRouterConfig(false);
           router.push("/home");
         } else {
           ElMessage.error("用户名或密码错误");

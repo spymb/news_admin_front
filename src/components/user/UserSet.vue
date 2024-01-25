@@ -15,6 +15,7 @@
         v-model="userForm.password"
         type="password"
         placeholder="请输入"
+        show-password
       />
     </el-form-item>
 

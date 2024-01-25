@@ -1,24 +1,14 @@
-import { createRouter, createWebHashHistory } from "vue-router";
-import routeList from "./routes";
+import { RouteRecordRaw, createRouter, createWebHashHistory } from "vue-router";
+import { routes as routeList, loginRoute, mainRoute } from "./routes";
 import useAuthStore from "@/store/useAuthStore";
+import useUserStore from "@/store/useUserStore";
 import { storeToRefs } from "pinia";
 
-const routes = [
-  {
-    path: "/login",
-    name: "login",
-    component: () => import("@/views/Login.vue"),
-  },
-  {
-    path: "/main",
-    name: "main",
-    component: () => import("@/views/Main.vue"),
-  },
-];
+const coreRoutes = [loginRoute, mainRoute];
 
 const router = createRouter({
   history: createWebHashHistory(),
-  routes,
+  routes: coreRoutes,
 });
 
 router.beforeEach((to, from, next) => {
@@ -33,7 +23,8 @@ router.beforeEach((to, from, next) => {
       next({ path: "/login" });
     } else {
       if (!isRouterConfigured.value) {
-        configRouter(() => switchRouterConfig(true));
+        configRouter();
+        switchRouterConfig(true);
         next({ path: to.fullPath });
       } else {
         next();
@@ -42,11 +33,27 @@ router.beforeEach((to, from, next) => {
   }
 });
 
-const configRouter = (callback: Function) => {
-  routeList.forEach((route) => {
-    router.addRoute("main", route);
+const configRouter = () => {
+  router.removeRoute("main");
+
+  router.addRoute({
+    path: "/main",
+    name: "main",
+    component: () => import("@/views/Main.vue"),
   });
-  callback();
+
+  routeList.forEach((route) => {
+    checkPermission(route) && router.addRoute("main", route);
+  });
+};
+
+const checkPermission = (route: RouteRecordRaw) => {
+  if (route?.meta?.requireAdmin) {
+    const userStore = useUserStore();
+    const { userInfo } = storeToRefs(userStore);
+    return userInfo.value.role === 1;
+  }
+  return true;
 };
 
 export default router;

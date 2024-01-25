@@ -17,7 +17,7 @@
         <span>个人中心</span>
       </el-menu-item>
 
-      <el-sub-menu index="/user">
+      <el-sub-menu index="/user" v-if="userInfo.role === 1">
         <template #title>
           <el-icon>
             <user-filled />
@@ -47,9 +47,7 @@
           <span>产品管理</span>
         </template>
         <el-menu-item index="/product/add">添加产品</el-menu-item>
-        <el-menu-item index="/product/list"
-          >产品列表</el-menu-item
-        >
+        <el-menu-item index="/product/list">产品列表</el-menu-item>
       </el-sub-menu>
     </el-menu>
   </el-aside>
@@ -65,9 +63,13 @@ import {
 } from "@element-plus/icons-vue";
 import { useRoute } from "vue-router";
 import useCollapseStore from "@/store/useCollapseStore";
+import useUserStore from "@/store/useUserStore";
 import { storeToRefs } from "pinia";
 
 const { isCollapsed } = storeToRefs(useCollapseStore());
+
+const userStore = useUserStore();
+const { userInfo } = storeToRefs(userStore);
 
 const route = useRoute();
 </script>
