@@ -1,14 +1,14 @@
 import { defineStore } from "pinia";
 import { ref } from "vue";
 
-type UserInfo = {
+export type UserInfo = {
   username: string;
   password: string;
   role: 1 | 2; // 管理员1 ,编辑2
-  avatar: string;
-  file: Blob;
   gender: 0 | 1 | 2; // 0保密, 1男, 2女
   introduction: string;
+  avatar: string;
+  file: Blob;
 };
 
 const useUserStore = defineStore(

@@ -14,6 +14,9 @@ dependencies:
   '@tsparticles/vue3':
     specifier: ^3.0.0
     version: registry.npmmirror.com/@tsparticles/vue3@3.0.0(typescript@5.2.2)
+  '@types/lodash':
+    specifier: ^4.14.202
+    version: registry.npmmirror.com/@types/lodash@4.14.202
   '@types/vue-router':
     specifier: ^2.0.0
     version: 2.0.0(vue@3.3.11)
@@ -23,6 +26,9 @@ dependencies:
   element-plus:
     specifier: ^2.5.1
     version: registry.npmmirror.com/element-plus@2.5.1(vue@3.3.11)
+  lodash:
+    specifier: ^4.17.21
+    version: registry.npmmirror.com/lodash@4.17.21
   pinia:
     specifier: ^2.1.7
     version: registry.npmmirror.com/pinia@2.1.7(typescript@5.2.2)(vue@3.3.11)

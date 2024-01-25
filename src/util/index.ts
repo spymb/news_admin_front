@@ -2,23 +2,31 @@ import axios from "axios";
 
 type UserForm = {
   username: string;
+  password: string;
+  role: 1 | 2;
   gender: 0 | 1 | 2; // 0保密, 1男, 2女
-  introduction: string;
   avatar: string;
   file: any;
+  introduction: string;
 };
 
-export function upload(path: string, userForm: UserForm) {
+export function upload(
+  path: string,
+  userForm: Partial<UserForm>,
+  method: "post" | "put"
+) {
   const params = new FormData();
   let i: keyof UserForm;
   for (i in userForm) {
     params.append(i, userForm[i]);
   }
-  return axios
-    .post(path, params, {
-      headers: {
-        "Content-Type": "multipart/form-data",
-      },
-    })
-    .then((res) => res.data);
+
+  return axios({
+    method,
+    url: path,
+    data: params,
+    headers: {
+      "Content-Type": "multipart/form-data",
+    },
+  }).then((res) => res.data);
 }

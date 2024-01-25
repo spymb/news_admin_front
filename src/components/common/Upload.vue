@@ -15,7 +15,7 @@
 
 <script setup lang="ts">
 import { Plus } from "@element-plus/icons-vue";
-import { defineEmits, defineProps, computed } from "vue";
+import { computed } from "vue";
 
 const props = defineProps({
   avatar: String,
@@ -24,12 +24,12 @@ const props = defineProps({
 const emit = defineEmits(["avatarChange"]);
 
 const avatarUrl = computed(() =>
-  props.avatar.includes("blob")
+  props.avatar?.includes("blob")
     ? props.avatar
     : "http://localhost:3000" + props.avatar
 );
 
-const handleChange = (file) => {
+const handleChange = (file: any) => {
   emit("avatarChange", file.raw);
 };
 </script>
